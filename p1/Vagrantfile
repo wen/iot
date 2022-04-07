@@ -1,0 +1,21 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "centos/8"
+
+  config.vm.provider "virtualbox" do |v|
+    v.cpus = 1
+    v.memory = 512
+  end
+
+  config.vm.define "yewenS" do |yewenS|
+    yewenS.vm.hostname = "yewenS"
+    yewenS.vm.network "private_network", ip: "192.168.42.110"
+  end
+
+  config.vm.define "yewenSW" do |yewenSW|
+    yewenSW.vm.hostname = "yewenSW"
+    yewenSW.vm.network "private_network", ip: "192.168.42.111"
+  end
+end
