@@ -3,13 +3,12 @@
 
 Vagrant.configure("2") do |config|
   config.vm.box = "centos/stream8"
-
   config.vm.provider "virtualbox" do |v|
     v.cpus = 1
     v.memory = 512
   end
-
-  config.vm.provision "shell", inline: "yum install -y net-tools"
+  #config.vm.synced_folder ".", "/vagrant"
+  #config.vm.provision "shell", inline: "yum install -y net-tools"
 
   config.vm.define "yewenS" do |master|
     master.vm.hostname = "yewenS"
