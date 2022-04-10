@@ -2,20 +2,30 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "centos/8"
+  config.vm.box = "centos/stream8"
 
   config.vm.provider "virtualbox" do |v|
     v.cpus = 1
     v.memory = 512
   end
 
-  config.vm.define "yewenS" do |yewenS|
-    yewenS.vm.hostname = "yewenS"
-    yewenS.vm.network "private_network", ip: "192.168.42.110"
+  config.vm.provision "shell", inline: "yum install -y net-tools"
+
+  config.vm.define "yewenS" do |master|
+    master.vm.hostname = "yewenS"
+    master.vm.network "private_network", ip: "192.168.42.110"
+    master.vm.provider "virtualbox" do |v|
+      v.customize ["modifyvm", :id, "--name", "yewenS"]
+    end
+    master.vm.provision "shell", path: "scripts/master.sh"
   end
 
-  config.vm.define "yewenSW" do |yewenSW|
-    yewenSW.vm.hostname = "yewenSW"
-    yewenSW.vm.network "private_network", ip: "192.168.42.111"
+  config.vm.define "yewenSW" do |worker|
+    worker.vm.hostname = "yewenSW"
+    worker.vm.network "private_network", ip: "192.168.42.111"
+    worker.vm.provider "virtualbox" do |v|
+      v.customize ["modifyvm", :id, "--name", "yewenSW"]
+    end
+    worker.vm.provision "shell", path: "scripts/worker.sh"
   end
 end
