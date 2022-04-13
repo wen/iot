@@ -1,5 +1,5 @@
 echo "creating cluster"
-sudo k3d cluster create --api-port 6443 -p 8080:80@loadbalancer -p 8888:30888@loadbalancer --agents 2
+sudo k3d cluster create -p 8080:80@loadbalancer -p 8888:30888@loadbalancer
 echo "created cluster, waiting..."
 sleep 5
 
