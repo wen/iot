@@ -1,0 +1,41 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+BOX = "centos/7"
+MEMORY = 2048
+CPUS = 2
+
+MASTER = "suchoS"
+IP_MASTER = "192.168.42.110"
+
+master_script = <<-SHELL
+    curl -sfL https://get.k3s.io \
+      | \
+        sh -s - \
+          server \
+          --write-kubeconfig-mode=644 \
+          --flannel-iface=eth1
+    #cp /var/lib/rancher/k3s/server/token /vagrant/token
+    SHELL
+
+Vagrant.configure("2") do | config |
+  config.vm.box = BOX
+  # Synced folder between host and the guest machine
+  config.vm.synced_folder ".", "/vagrant", type: "nfs"
+  config.vm.network "forwarded_port", guest: 6443, host: 8080
+  #confkk.vm.provision "shell", inline: "yum install -y net-tools" # install ifconfig
+  config.vm.provider "virtualbox" do | vb |
+    vb.memory = MEMORY
+    vb.cpus = CPUS
+    # Enable NAT hosts DNS resolver
+    vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+    vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
+    # Reduce the time sync threshold
+    vb.customize [ "guestproperty", "set", :id, "/VirtualBox/GuestAdd/VBoxService/--timesync-set-threshold", 10000 ]
+  end
+  config.vm.define MASTER do | master |
+    master.vm.hostname = MASTER
+    master.vm.network "private_network", ip: IP_MASTER
+    #master.vm.provision "shell", inline: master_script
+  end
+end
