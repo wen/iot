@@ -16,7 +16,7 @@ sleep 3
 
 echo "waiting the pods to be ready"
 sudo kubectl wait -n argocd --for=condition=Ready pods --all
-echo "pods created waiting..."
+echo "pods ready, waiting..."
 sleep 3
 
 echo "installing ingress"
