@@ -1,0 +1,39 @@
+---
+# Ingress
+# https://kubernetes.io/fr/docs/concepts/services-networking/ingress
+# https://github.com/paulbouwer/hello-kubernetes/blob/6e9ac0e273bfdaf1f9b78501e8b046be00d44eb3/docs/deploy-with-ingress.md#deploy-ingress-definition
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: app1
+spec:
+  rules:
+    - host: app1.ft
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: app1
+                port:
+                  number: 80
+    - host: app2.ft
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: app2
+                port:
+                  number: 80
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: app3
+                port:
+                  number: 80
