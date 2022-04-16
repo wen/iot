@@ -18,7 +18,7 @@ kind: Deployment
 metadata:
   name: app2
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: app2
@@ -39,23 +39,23 @@ spec:
           - name: MESSAGE
             value: "Hello from app2!"
 
----
-# Ingress
-# https://github.com/paulbouwer/hello-kubernetes/blob/6e9ac0e273bfdaf1f9b78501e8b046be00d44eb3/docs/deploy-with-ingress.md#deploy-ingress-definition
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: app2
-spec:
-  rules:
-    - host: app2.coco
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: app2
-                port:
-                  number: 80
-
+#---
+## Ingress
+## https://kubernetes.io/fr/docs/concepts/services-networking/ingress/#la-ressource-ingress
+#apiVersion: networking.k8s.io/v1
+#kind: Ingress
+#metadata:
+#  name: app2
+#spec:
+#  rules:
+#    - host: app2.ft
+#      http:
+#        paths:
+#          - path: /
+#            pathType: Prefix
+#            backend:
+#              service:
+#                name: app2
+#                port:
+#                  number: 80
+#
