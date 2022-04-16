@@ -12,11 +12,16 @@ master_script = <<-SHELL
       | \
         sh -s - \
           server \
-          --write-kubeconfig-mode=644 \
-          --flannel-iface=eth1
+            --write-kubeconfig-mode=644 \
+            --flannel-iface=eth1
     # https://github.com/k3s-io/k3s/issues/4858#issuecomment-1063786817 & https://yuanji.dev/devops/kubernetes/k3s/#troubleshooting
-    echo -e "nameserver 8.8.8.8\nnameserver 8.8.4.4" >> /etc/resolv.conf
+    mkdir -p /run/systemd/resolve/
+    # Failed to pull image issue https://yuanji.dev/devops/kubernetes/k3s/#failed-to-pull-image
+    echo -e "nameserver 8.8.8.8\nnameserver 8.8.4.4" >> /run/systemd/resolve/stub-resolv.conf
+    ln -rsf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
     sed "s/127.0.0.1/#{IP_MASTER}/" /etc/rancher/k3s/k3s.yaml > /vagrant/k3s.yaml
+    echo -e "#{IP_MASTER} app1.ft\n#{IP_MASTER} app2.ft\n#{IP_MASTER} app3.ft" >> /etc/hosts
+    /usr/local/bin/kubectl apply -f /vagrant/apps
     SHELL
 
 Vagrant.configure("2") do | config |
