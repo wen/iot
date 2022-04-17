@@ -7,6 +7,11 @@ kind: Ingress
 metadata:
   name: ingress-applications
 spec:
+  defaultBackend:
+    service:
+      name: app-three
+      port:
+        number: 80
   rules:
     - host: app1.com
       http:
@@ -26,14 +31,5 @@ spec:
             backend:
               service:
                 name: app-two
-                port:
-                  number: 80
-    - http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: app-three
                 port:
                   number: 80
