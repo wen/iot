@@ -11,7 +11,7 @@ common = <<-SHELL
 	sudo echo "autocmd filetype yaml setlocal ai ts=2 sw=2 et" > /home/vagrant/.vimrc
 	sudo echo "alias python=/usr/bin/python3" >> /home/vagrant/.bashrc
 	sed -i 's/ChallengeResponseAuthentication no/ChallengeResponseAuthentication yes/g' /etc/ssh/sshd_config
-	sudo systemctl restart sshd
+	sudo /usr/bin/systemctl restart sshd
     SHELL
 
 
