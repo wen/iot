@@ -1,11 +1,12 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-CPUS = 4
-MEMORY = 4096
-BOX = "centos/7"
-MASTER = "amalsagoS"
-WORKER = "amalsagoSW"
+# Definition of constants
+CPUS      = 4
+MEMORY    = 4096
+BOX       = "centos/7"
+MASTER    = "amalsagoS"
+WORKER    = "amalsagoSW"
 IP_MASTER = "192.168.42.110"
 IP_WORKER = "192.168.42.111"
 
@@ -42,14 +43,14 @@ Vagrant.configure("2") do | config |
   # MASTER'S PROPERTIES
   config.vm.define MASTER do | master |
     master.vm.hostname = MASTER
-    master.vm.network "private_network", ip: IP_MASTER, hostname: true
     master.vm.provision "shell", inline: master_script
+    master.vm.network "private_network", ip: IP_MASTER, hostname: true
   end
 
   # WORKER'S PROPERTIES
   config.vm.define WORKER do | worker |
     worker.vm.hostname = WORKER
-    worker.vm.network "private_network", ip: IP_WORKER, hostname: true
     worker.vm.provision "shell", inline: worker_script
+    worker.vm.network "private_network", ip: IP_WORKER, hostname: true
   end
 end
