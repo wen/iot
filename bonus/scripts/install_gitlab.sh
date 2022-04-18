@@ -19,12 +19,10 @@ export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_us.UTF-8
 sudo apt install -y gitlab-ce
 
-########################
-# change access address here
 # add portnumber 9999
-###################
+sudo sed -i 's|external_url \x27http://gitlab.example.com\x27|external_url \x27http://gitlab.example.com:9999\x27|g' /etc/gitlab/gitlab.rb 
 
 sudo gitlab-ctl reconfigure
-echo "END - install gitlab"
-
-#sudo dpkg-reconfugre locales
+echo "---------END - install gitlab---------\n"
+sudo cat /etc/gitlab/initial_root_password
+echo "---------END - install gitlab---------\n"
