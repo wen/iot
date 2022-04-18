@@ -7,7 +7,7 @@ metadata:
 spec:
   description: Our ArgoCD Project to deploy our app locally
   sourceRepos:
-    - "http://178.62.244.89/root/*"
+    - "http://178.62.244.89:9999/root/*"
   destinations:
     - namespace: dev
       server: https://kubernetes.default.svc
