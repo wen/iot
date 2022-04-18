@@ -1,13 +1,20 @@
 # Inception of Things
 
+<img width="400px" align="right" alt="Curve Inception of Things" src="https://user-images.githubusercontent.com/22397481/163789570-6e50e533-786f-4af4-8f2f-9151bb38d30f.png">
+
 ## Introduction
 This project aims to deepen our knowledge by making us use [K3d](https://k3d.io) and [K3s](https://k3s.io) with [Vagrant](https://www.vagrantup.com/).
 
-We will learn how to set up a personal virtual machine with Vagrant and CentOS. Then, we will learn how to use K3s and its [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/). Last but not least, we will discover K3d that will simplify our life.
+We will learn how to set up a personal virtual machine with Vagrant and CentOS. 
+
+Then, we will learn how to use K3s and its [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/). 
+
+Last but not least, we will discover K3d that will simplify our life.
 
 These steps will get us started with [Kubernetes](https://kubernetes.io/).
 
-> This project is a minimal introduction to Kubernetes. Indeed, this tool is too complex to be mastered in a single subject.
+> This project is a minimal introduction to Kubernetes.</br>
+> Indeed, this tool is too complex to be mastered in a single subject.
 
 ## General guidelines
 1. The whole project has to be done in a virtual machine.
@@ -37,6 +44,3 @@ We are allowed to use whatever we need to achieve this extra. For example, [helm
 - Everything we did in [Part 3](https://github.com/wen/iot/tree/master/p3) must work with our local Gitlab
 
 We can add everything needed so our entire cluster works.
-
-
-<img alt="Curve Inception of Things" src="https://user-images.githubusercontent.com/22397481/163789176-7576309d-6ee2-4f35-86d2-807a08e68e58.png">
