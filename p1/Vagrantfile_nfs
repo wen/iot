@@ -10,24 +10,24 @@ IP_MASTER = "192.168.42.110"
 IP_WORKER = "192.168.42.111"
 
 master_script = <<-SHELL
-    curl -sfL https://get.k3s.io \
-      | \
-        sh -s - \
-          server \
-            --write-kubeconfig-mode=644 \
-            --flannel-iface=eth1
-    cp /var/lib/rancher/k3s/server/token /vagrant/token
-    SHELL
+  curl -sfL https://get.k3s.io \
+    | \
+      sh -s - \
+        server \
+          --write-kubeconfig-mode=644 \
+          --flannel-iface=eth1
+  cp /var/lib/rancher/k3s/server/token /vagrant/token
+SHELL
 
 worker_script = <<-SHELL
-    curl -sfL https://get.k3s.io \
-      | \
-        sh -s - \
-          agent \
-            --server=https://#{IP_MASTER}:6443 \
-            --token-file=/vagrant/token \
-            --flannel-iface=eth1
-    SHELL
+  curl -sfL https://get.k3s.io \
+    | \
+      sh -s - \
+        agent \
+          --server=https://#{IP_MASTER}:6443 \
+          --token-file=/vagrant/token \
+          --flannel-iface=eth1
+SHELL
 
 Vagrant.configure("2") do | config |
   config.vm.box = BOX
