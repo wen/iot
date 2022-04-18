@@ -17,6 +17,7 @@ master_script = <<-SHELL
         server \
           --write-kubeconfig-mode=644 \
           --flannel-iface=eth1
+  yum install -y net-tools
   cp /var/lib/rancher/k3s/server/token /vagrant/token
 SHELL
 
@@ -28,6 +29,7 @@ worker_script = <<-SHELL
           --server=https://#{IP_MASTER}:6443 \
           --token-file=/vagrant/token \
           --flannel-iface=eth1
+  yum install -y net-tools
 SHELL
 
 Vagrant.configure("2") do | config |
