@@ -1,4 +1,5 @@
 # Inception of Things
+📚 [Here](https://github.com/wen/iot/wiki) is the Wiki page of the project.
 
 <img width="400px" align="right" alt="Curve Inception of Things" src="https://user-images.githubusercontent.com/22397481/163789570-6e50e533-786f-4af4-8f2f-9151bb38d30f.png">
 
@@ -28,14 +29,14 @@ These steps will get us started with [Kubernetes](https://kubernetes.io/).
 This project will consist of setting up several environments under specific rules.
 
 It is divided into three parts we have to do in the following order:
-- **[`Part 1`](https://github.com/wen/iot/tree/master/p1)**: K3s and Vagrant
-- **[`Part 2`](https://github.com/wen/iot/tree/master/p2)**: K3s and three simple applications
-- **[`Part 3`](https://github.com/wen/iot/tree/master/p3)**: K3d and Argo CD
+- **[`Part 1`](https://github.com/wen/iot/wiki/Part-1:-K3s-and-Vagrant)**: K3s and Vagrant
+- **[`Part 2`](https://github.com/wen/iot/wiki/Part-2:-K3s-and-three-simple-applications)**: K3s and three simple applications
+- **[`Part 3`](https://github.com/wen/iot/wiki/Part-3:-K3d-and-Argo-CD)**: K3d and Argo CD
 
 ## Bonus part
 The following extra is intended to be useful: [Gitlab](https://about.gitlab.com/) needs to be added in the lab we did in [Part 3](https://github.com/wen/iot/tree/master/p3).
 
-**[This bonus](https://github.com/wen/iot/tree/master/bonus) is complex**. The latest version available of Gitlab from the official website is expected.
+☠️ **[This bonus](https://github.com/wen/iot/tree/master/bonus) is complex**. The latest version available of Gitlab from the official website is expected.
 
 We are allowed to use whatever we need to achieve this extra. For example, [helm](https://helm.sh) could be useful here.
 - Our Gitlab instance must run locally
