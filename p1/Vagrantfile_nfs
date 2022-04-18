@@ -36,11 +36,6 @@ Vagrant.configure("2") do | config |
   config.vm.provider "virtualbox" do | vb |
     vb.cpus = CPUS
     vb.memory = MEMORY
-    # Enable NAT hosts DNS resolver
-    vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
-    vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
-    # Reduce the time sync threshold
-    vb.customize [ "guestproperty", "set", :id, "/VirtualBox/GuestAdd/VBoxService/--timesync-set-threshold", 10000 ]
   end
   config.vm.define MASTER do | master |
     master.vm.hostname = MASTER
