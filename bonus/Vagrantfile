@@ -39,6 +39,6 @@ Vagrant.configure("2") do | config |
 		sed -i 's/ChallengeResponseAuthentication no/ChallengeResponseAuthentication yes/g' /etc/ssh/sshd_config
 		service ssh restart
 	SHELL
-	# gitlab.vm.provision "shell", path: "scripts/install_gitlab.sh"
+	gitlab.vm.provision "shell", path: "scripts/install_gitlab.sh"
   end
 end
