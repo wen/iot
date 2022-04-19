@@ -19,7 +19,7 @@ master_script = <<-SHELL
   echo -e "nameserver 8.8.8.8\nnameserver 8.8.4.4" >> /run/systemd/resolve/stub-resolv.conf
   ln -rsf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
   sed "s/127.0.0.1/#{IP_MASTER}/" /etc/rancher/k3s/k3s.yaml > /vagrant/k3s.yaml
-  /usr/local/bin/kubectl apply -f /vagrant/confs
+  /usr/local/bin/kubectl -n kube-system apply -f /vagrant/confs
 SHELL
 
 Vagrant.configure("2") do | config |

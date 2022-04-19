@@ -11,7 +11,7 @@ echo "created namespaces, waiting..."
 sleep 3
 
 echo "installing argocd"
-kubectl apply -n argocd -f ../confs/default/install.yaml
+kubectl apply -n argocd -f ../confs/install.yaml
 echo "installed argocd, waiting..."
 sleep 3
 
@@ -21,7 +21,7 @@ echo "pods ready, waiting..."
 sleep 3
 
 echo "installing ingress"
-kubectl apply -f ../confs/default/ingress.yaml -n argocd
+kubectl apply -f ../confs/ingress.yaml -n argocd
 echo "installed ingress, waiting..."
 sleep 3
 
@@ -35,12 +35,12 @@ echo "changed default password to password, waiting..."
 sleep 3
 
 echo "installing project to argocd"
-kubectl apply -f ../confs/default/project.yaml -n argocd
+kubectl apply -f ../confs/project.yaml -n argocd
 echo "installed project to argocd"
 sleep 3
 
 echo "installing application to argocd"
-kubectl apply -f ../confs/default/application.yaml -n argocd
+kubectl apply -f ../confs/application.yaml -n argocd
 echo "installed application to argocd"
 
 echo "DONE!"
