@@ -20,6 +20,7 @@ master_script = <<-SHELL
   ln -rsf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
   sed "s/127.0.0.1/#{IP_MASTER}/" /etc/rancher/k3s/k3s.yaml > /vagrant/k3s.yaml
   /usr/local/bin/kubectl -n kube-system apply -f /vagrant/confs
+  yum install -y net-tools # install ifconfig
 SHELL
 
 Vagrant.configure("2") do | config |
