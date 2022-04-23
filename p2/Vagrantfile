@@ -4,7 +4,7 @@
 CPUS      = 4
 MEMORY    = 4096
 BOX       = "centos/7"
-MASTER    = "suchoS"
+MASTER    = "yewenS"
 IP_MASTER = "192.168.42.110"
 
 master_script = <<-SHELL
@@ -34,7 +34,6 @@ Vagrant.configure("2") do | config |
     master.vm.provision "shell", inline: master_script
     master.vm.network "private_network", ip: IP_MASTER, hostname: true
   end
-  config.vm.synced_folder ".", "/vagrant", type: "nfs"
   config.vm.network "forwarded_port", guest: 80, host: 80, protocol: "tcp"
   config.vm.network "forwarded_port", guest: 6443, host: 6443, protocol: "tcp"
 end
