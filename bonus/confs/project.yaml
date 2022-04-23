@@ -1,19 +1,16 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Application
+piVersion: argoproj.io/v1alpha1
+kind: AppProject
 metadata:
-  name: iot-gitlab-development
+  name: development
+  labels:
+    app: iot-gitlab
 spec:
-  project: development
-  source:
-    repoURL: http://178.62.244.89:9999/root/iot-gitlab.git
-    targetRevision: HEAD
-    path: manifests
-    directory:
-      recurse: true
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: gitlab
-  syncPolicy:
-    automated:
-      prune: false
-      selfHeal: true
+  description: GitLab Project to deploy our app locally
+  sourceRepos:
+    - "http://HOST_IP/root/*"
+  destinations:
+    - namespace: gitlab
+      server: https://kubernetes.default.svc
+  orphanedResources:
+    warn: false
+
