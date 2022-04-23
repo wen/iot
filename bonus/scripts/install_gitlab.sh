@@ -1,8 +1,6 @@
 #!/bin/bash
 
-IP=$(hostname -I | awk '{print $2}')
-
-echo "start - install gitlab - "$IP
+echo "start - install gitlab - "$HOST_IP
 
 echo "[1]: install gitlab"
 
@@ -23,7 +21,7 @@ sudo apt-get update -qq >/dev/null
 sudo apt install -y gitlab-ce
 
 # add portnumber 9999
-sudo sed -i 's|external_url \x27http://gitlab.example.com\x27|external_url \x27http://gitlab.example.com:9999\x27|g' /etc/gitlab/gitlab.rb 
+sudo sed -i 's|external_url \x27http://gitlab.example.com\x27|external_url \x27http://'"$HOST_IP"':9999\x27|g' /etc/gitlab/gitlab.rb 
 
 sudo gitlab-ctl reconfigure
 echo "---------END - install gitlab---------\n"

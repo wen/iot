@@ -1,10 +1,6 @@
 CPUS = 4
 MEMORY = 4096
 BOX = "centos/7"
-MASTER = "k3S"
-WORKER = "k3SW"
-IP_MASTER = "192.168.42.110"
-IP_WORKER = "192.168.42.111"
 
 common = <<-SHELL
 	sudo yum -y install vim tree net-tools telnet git python3
@@ -39,6 +35,6 @@ Vagrant.configure("2") do | config |
 		sed -i 's/ChallengeResponseAuthentication no/ChallengeResponseAuthentication yes/g' /etc/ssh/sshd_config
 		service ssh restart
 	SHELL
-	gitlab.vm.provision "shell", path: "scripts/install_gitlab.sh"
+	gitlab.vm.provision "shell", path: "scripts/install_gitlab.sh", env: {"HOST_IP" => "#{ENV['HOST_IP']}"}
   end
 end
