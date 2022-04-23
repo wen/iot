@@ -1,4 +1,4 @@
-piVersion: argoproj.io/v1alpha1
+apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
   name: development
@@ -7,7 +7,7 @@ metadata:
 spec:
   description: GitLab Project to deploy our app locally
   sourceRepos:
-    - "http://HOST_IP:9999/root/*"
+    - "http://178.62.244.89:9999/root/*"
   destinations:
     - namespace: gitlab
       server: https://kubernetes.default.svc

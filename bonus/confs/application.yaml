@@ -5,7 +5,7 @@ metadata:
 spec:
   project: development
   source:
-    repoURL: http://HOST_IP:9999/root/iot-gitlab.git
+    repoURL: http://178.62.244.89:9999/root/iot-gitlab.git
     targetRevision: HEAD
     path: manifests
     directory:
